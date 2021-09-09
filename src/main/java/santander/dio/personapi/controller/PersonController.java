@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import santander.dio.personapi.dto.MessageResponseDTO;
+import santander.dio.personapi.dto.request.PersonDTO;
 import santander.dio.personapi.entity.Person;
 import santander.dio.personapi.repository.PersonRepository;
 import santander.dio.personapi.service.PersonService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -41,8 +44,8 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody Person person){
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO){
 
-        return personService.createPerson(person);
+        return personService.createPerson(personDTO);
        }
 }
