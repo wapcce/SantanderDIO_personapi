@@ -11,6 +11,7 @@ import santander.dio.personapi.repository.PersonRepository;
 import santander.dio.personapi.service.PersonService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -47,5 +48,11 @@ public class PersonController {
     public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO){
 
         return personService.createPerson(personDTO);
+       }
+
+       @GetMapping
+       public List<PersonDTO> listAll(){
+        return personService.listAll();
+
        }
 }

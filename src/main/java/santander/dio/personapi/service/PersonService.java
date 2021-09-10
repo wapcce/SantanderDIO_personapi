@@ -10,6 +10,9 @@ import santander.dio.personapi.entity.Person;
 import santander.dio.personapi.mapper.PersonMapper;
 import santander.dio.personapi.repository.PersonRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service //indica ao spring para gerenciar uma classe do tipo serviço onde tem as regras de negócio
 public class PersonService {
 
@@ -32,5 +35,16 @@ public class PersonService {
                 .builder()
                 .message("Created person with ID " + savedPerson.getId())
                 .build();
+    }
+
+
+    public List<PersonDTO> listAll() {
+        List<Person> allPeople = personRepository.findAll();
+        return allPeople.stream() //não deixa retornar allPeople tem ue converter em uma lista de objeto PersonDTO
+                //então abre um stream
+                .map(personMapper::toDTO) //com o map para cada um das pessoas vai chamar o método toDTO onde
+                //vai converter de entidade para DTO
+                .collect(Collectors.toList());
+
     }
 }
