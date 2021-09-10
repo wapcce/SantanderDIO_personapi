@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import santander.dio.personapi.dto.MessageResponseDTO;
 import santander.dio.personapi.dto.request.PersonDTO;
 import santander.dio.personapi.entity.Person;
+import santander.dio.personapi.exception.PersonNotFoundException;
 import santander.dio.personapi.repository.PersonRepository;
 import santander.dio.personapi.service.PersonService;
 
@@ -54,5 +55,10 @@ public class PersonController {
        public List<PersonDTO> listAll(){
         return personService.listAll();
 
+       }
+
+       @GetMapping("/{id}")
+       public PersonDTO findBId(Long id) throws PersonNotFoundException {
+        return personService.findById(id);
        }
 }
