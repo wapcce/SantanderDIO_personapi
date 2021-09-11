@@ -1,6 +1,7 @@
 package santander.dio.personapi.controller;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
+@AllArgsConstructor(onConstructor =@__(@Autowired)) //conseguimos tirar o construtor padrão
 public class PersonController {
 
     private PersonRepository personRepository;
@@ -26,13 +28,6 @@ public class PersonController {
     }*/
 
     private PersonService personService;
-
-    @Autowired
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
-
-
 
 
     /*@PostMapping//foi modificado para o de @etMapping para @PostMapping

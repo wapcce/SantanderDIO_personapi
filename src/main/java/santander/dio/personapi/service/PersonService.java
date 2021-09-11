@@ -1,5 +1,6 @@
 package santander.dio.personapi.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,16 +17,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service //indica ao spring para gerenciar uma classe do tipo serviço onde tem as regras de negócio
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
     private PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
 
     @PostMapping//foi modificado para o de @etMapping para @PostMapping
     public MessageResponseDTO createPerson(PersonDTO personDTO){//@RequestBody informa que o objeto está vindo de uma requisição
